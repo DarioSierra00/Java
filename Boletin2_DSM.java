@@ -1,13 +1,13 @@
-package Boletin2_DSM;
+package com.edu;
 
 import java.util.Scanner;
 
-public class Ejercicio2_DSM {
+public class Boletin2_DSM {
 	public static String numeroSolucionesEcuacionSegundoGrado(double a, double b, double c) {
 		double x1 = ((-b) + Math.sqrt(Math.pow(b, 2) - (4 * a * c))) / (2 * a);
 		double x2 = ((-b) - Math.sqrt(Math.pow(b, 2) - (4 * a * c))) / (2 * a);
 		
-		String resultado = "El primer resultado es "+ x1 + "y el segundo resultado es " + x2;
+		String resultado = "El primer resultado es "+ x1 + " y el segundo resultado es " + x2;
 		return resultado;
 	}
 	
@@ -78,20 +78,72 @@ public class Ejercicio2_DSM {
 		}return resultado;
 	}
 	
-	//public static int segundosEntre(int hora1, int min1, int sec1, int hora2, int min2, int sec2) {
-		//int resultado = 0;
-		
-	//}
+	public static int segundosEntre(int hora1, int min1, int sec1, int hora2, int min2, int sec2) {
+		int resultado = 0;
+		int totalHora = 0;
+		int totalHora2 = 0;
+		int total = 0;
+		if (hora1 <= 12 && hora2 <= 12 && min1 <= 60 && min2 <= 60 && sec1 <= 60 && sec2 <= 60) {
+			totalHora = (hora1*3600) + (min1*60) + (sec1);
+			totalHora2 = (hora2*3600) + (min2*60) + (sec2);
+			total=Math.abs(totalHora - totalHora2);
+			resultado =  total;
+		}else {
+			resultado = -1000;
+		}
+		return resultado;
+	}
 	
-	/*Realizar un método llamado segundosEntre que recibirá seis valores enteros, los
-	tres primeros representarán la hora, minuto y segundos de la primera hora y los
-	otros tres de la segunda hora. Se deberá devolver el número de segundos que hay
-	entre la primera hora y la segunda (el valor debe ser siempre en positivo). Si los
-	datos no son correctos se deberá devolver -1000. */
+	public static String toBinary(int binario) {
+		String resultado = "";
+		while(binario > 0) {
+			if(binario%2 == 0) {
+				resultado = "0" + resultado;
+			}else {
+				resultado = "1" + resultado;
+			}
+			binario=(int)binario/2;
+		}
+		
+		return resultado;
+	}
+	
+	public static int toDecimal(String numero) {
+		int decimal = 0;
+		int posicion = 0;
+		for(int i = numero.length()-1; i>= 0; i--) {
+			int digito = 1;
+			if(numero.charAt(i) == '0') {
+				digito = 0;
+			}
+			double multiplicador = Math.pow(2, posicion);
+			decimal += digito * multiplicador;
+			posicion ++;
+		}
+		return decimal;
+	}
+	
+	public static double greaterCommonDivisor(double numero1 , double numero2) {
+		while(numero2 > 0) {
+			if(numero1 > numero2) {
+				numero1 = numero1 - numero2;
+			}else {
+				numero2 = numero2 - numero1;
+			}
+		}
+		return numero1;
+	}
+	
+	public static double minimoComunMultiplo(double num1, double num2) {
+		double comunDivisor = greaterCommonDivisor(num1,num2);
+		double resultado = (num1 * num2)/comunDivisor;
+		
+		return resultado;
+	}
 	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner (System.in);
-		/*
+		/* Ejercicio 2
 		System.out.println("Introduce un numero para darle la vuelta: ");
 		String numero = (sc.nextLine());
 		String resultado = "";
@@ -101,10 +153,32 @@ public class Ejercicio2_DSM {
 			resultado +=numero.charAt(i);
 		}System.out.println(resultado);*/
 		
+		//Comprobación Ejercicio1
+		System.out.println(numeroSolucionesEcuacionSegundoGrado(6,-5,1));
+		
+		//Comprobación Ejercicio3
 		System.out.println(constraseñaSegura("Dario?5.32"));
+		
+		//Comprobación Ejercicio4
 		System.out.println(codificacionCadena("Hola mundo"));
+		
+		//Comprobación Ejercicio5
 		System.out.println(esMultiplo(12, 4));
+		
+		//Comprobación Ejercicio6
 		System.out.println(horaMayor(12,12,12,12,12,12));
+		
+		//Comprobación Ejercicio7
+		System.out.println(segundosEntre(11,12,12,9,12,12));
+		
+		//Comprobación Ejercicio8
+		System.out.println(toBinary(320));
+
+		//Comprobación Ejercicio9
+		System.out.println(toDecimal("321"));
+		
+		//Comprobacion Ejercicio10
+		System.out.println(minimoComunMultiplo(16,42));
 	}
 
 }
