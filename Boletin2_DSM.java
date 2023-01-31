@@ -1,13 +1,25 @@
+<<<<<<< HEAD
 package com.edu;
 
 import java.util.Scanner;
 
 public class Boletin2_DSM {
+=======
+package Boletin2_DSM;
+
+import java.util.Scanner;
+
+public class Ejercicio2_DSM {
+>>>>>>> 8aea8ac (Boletin3 actualizado)
 	public static String numeroSolucionesEcuacionSegundoGrado(double a, double b, double c) {
 		double x1 = ((-b) + Math.sqrt(Math.pow(b, 2) - (4 * a * c))) / (2 * a);
 		double x2 = ((-b) - Math.sqrt(Math.pow(b, 2) - (4 * a * c))) / (2 * a);
 		
+<<<<<<< HEAD
 		String resultado = "El primer resultado es "+ x1 + " y el segundo resultado es " + x2;
+=======
+		String resultado = "El primer resultado es "+ x1 + "y el segundo resultado es " + x2;
+>>>>>>> 8aea8ac (Boletin3 actualizado)
 		return resultado;
 	}
 	
@@ -78,6 +90,7 @@ public class Boletin2_DSM {
 		}return resultado;
 	}
 	
+<<<<<<< HEAD
 	public static int segundosEntre(int hora1, int min1, int sec1, int hora2, int min2, int sec2) {
 		int resultado = 0;
 		int totalHora = 0;
@@ -144,6 +157,22 @@ public class Boletin2_DSM {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner (System.in);
 		/* Ejercicio 2
+=======
+	//public static int segundosEntre(int hora1, int min1, int sec1, int hora2, int min2, int sec2) {
+		//int resultado = 0;
+		
+	//}
+	
+	/*Realizar un método llamado segundosEntre que recibirá seis valores enteros, los
+	tres primeros representarán la hora, minuto y segundos de la primera hora y los
+	otros tres de la segunda hora. Se deberá devolver el número de segundos que hay
+	entre la primera hora y la segunda (el valor debe ser siempre en positivo). Si los
+	datos no son correctos se deberá devolver -1000. */
+	
+	public static void main(String[] args) {
+		Scanner sc = new Scanner (System.in);
+		/*
+>>>>>>> 8aea8ac (Boletin3 actualizado)
 		System.out.println("Introduce un numero para darle la vuelta: ");
 		String numero = (sc.nextLine());
 		String resultado = "";
@@ -153,6 +182,7 @@ public class Boletin2_DSM {
 			resultado +=numero.charAt(i);
 		}System.out.println(resultado);*/
 		
+<<<<<<< HEAD
 		//Comprobación Ejercicio1
 		System.out.println(numeroSolucionesEcuacionSegundoGrado(6,-5,1));
 		
@@ -179,6 +209,12 @@ public class Boletin2_DSM {
 		
 		//Comprobacion Ejercicio10
 		System.out.println(minimoComunMultiplo(16,42));
+=======
+		System.out.println(constraseñaSegura("Dario?5.32"));
+		System.out.println(codificacionCadena("Hola mundo"));
+		System.out.println(esMultiplo(12, 4));
+		System.out.println(horaMayor(12,12,12,12,12,12));
+>>>>>>> 8aea8ac (Boletin3 actualizado)
 	}
 
 }
