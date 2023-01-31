@@ -2,8 +2,6 @@ package com.edu;
 
 public class Boletin3_DSM {
 
-	public class Boletin3 {
-
 		public static String banderaFor(String cadena, int posicion) {
 
 			String resultado = "";
@@ -28,17 +26,35 @@ public class Boletin3_DSM {
 			
 			while (cont < cadena.length()) {
 				if ((palabraContar.charAt(igual)) == (cadena.charAt(cont))){
-					
-				}
-			}
+					igual ++;
+						
+				}else {
+					igual = 0;
+						
+				}if (igual == palabraContar.length()) {
+					numeroVeces ++;
+					igual = 0;
+				}cont ++;
+		}return numeroVeces;
 		
+	}
+		
+		//. Crea tres funciones cuyo comportamiento sea como el de los métodos de String
+		//startsWirth, contains y endsWith, pero sin utilizar ninguno de ellos
+			
+		
+		public static Boolean startWith(String palabraBuscar, String cadena) {
+			return (cadena.substring(0, palabraBuscar.length()).equals(palabraBuscar));
 		}
 		
-		//Diseña un programa que cuente el número de veces que aparece una palabra en
-		//una cadena de texto.
-			
+		public static Boolean endWith(String palabraBuscar, String cadena) {
+			return (cadena.substring(cadena.indexOf(palabraBuscar.charAt(0)), cadena.length()).equals(palabraBuscar));
+		}
 		public static void main(String[] args) {
 			System.out.println(banderaFor("HOLA LOCOTRONES", 4));
+			System.out.println(contarPalabra("Hola", "HolalocoHola"));
+			System.out.println(startWith("dario", "dario sierra"));
+			System.out.println(endWith("dario", "sierra dario"));
 			}
 		}
-}
+
