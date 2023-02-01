@@ -39,10 +39,6 @@ public class Boletin3_DSM {
 		
 	}
 		
-		//. Crea tres funciones cuyo comportamiento sea como el de los métodos de String
-		//startsWirth, contains y endsWith, pero sin utilizar ninguno de ellos
-			
-		
 		public static Boolean startWith(String palabraBuscar, String cadena) {
 			return (cadena.substring(0, palabraBuscar.length()).equals(palabraBuscar));
 		}
@@ -73,9 +69,26 @@ public class Boletin3_DSM {
 			}return resultado;
 	}
 		
-		public 
-		/*Crea tres funciones cuyo comportamiento sea como el de los métodos de String
-		startsWirth, contains y endsWith, pero sin utilizar ninguno de ellos.*/
+		public static Boolean esPalindromo(String cadena) {
+			Boolean resultado = false;
+			String palabraAlReves = "";
+			
+			for (int i = cadena.length()-1; i>=0; i--) {
+				if(Character.isWhitespace(cadena.charAt(i))) {
+					cadena = cadena.substring(0,i) + cadena.substring(i+1);
+					i--;
+					
+				}palabraAlReves+=cadena.substring(i,i+1);
+				
+				if (palabraAlReves.substring(0).equals(cadena.substring(0))) {
+					resultado = true;
+				}
+				}return resultado;
+			}
+		
+		/*public static Boolean esCapicua(double numero) {
+			
+			}*/
 		
 		public static void main(String[] args) {
 			System.out.println(banderaFor("HOLA LOCOTRONES", 4));
@@ -83,6 +96,8 @@ public class Boletin3_DSM {
 			System.out.println(startWith("dario", "dario sierra"));
 			System.out.println(endWith("dario", "sierra dario"));
 			System.out.println(contains("currito", "que locotron eres currito mio"));
+			System.out.println(esPalindromo("somos o no somos"));
+			//System.out.println(esCapicua(303));
 			}
 		}
 
