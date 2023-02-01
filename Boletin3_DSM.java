@@ -50,11 +50,39 @@ public class Boletin3_DSM {
 		public static Boolean endWith(String palabraBuscar, String cadena) {
 			return (cadena.substring(cadena.indexOf(palabraBuscar.charAt(0)), cadena.length()).equals(palabraBuscar));
 		}
+		
+		public static Boolean contains(String palabraContar, String cadena) {
+			int numeroVeces = 0;
+			int cont = 0;
+			int igual = 0;
+			Boolean resultado = false;
+			while (cont < cadena.length()) {
+				if ((palabraContar.charAt(igual)) == (cadena.charAt(cont))){
+					igual ++;
+						
+				}else {
+					igual = 0;
+						
+				}if (igual == palabraContar.length()) {
+					numeroVeces ++;
+					igual = 0;
+				}cont ++;
+		}
+			if (numeroVeces >=0) {
+				resultado = true;
+			}return resultado;
+	}
+		
+		public 
+		/*Crea tres funciones cuyo comportamiento sea como el de los métodos de String
+		startsWirth, contains y endsWith, pero sin utilizar ninguno de ellos.*/
+		
 		public static void main(String[] args) {
 			System.out.println(banderaFor("HOLA LOCOTRONES", 4));
 			System.out.println(contarPalabra("Hola", "HolalocoHola"));
 			System.out.println(startWith("dario", "dario sierra"));
 			System.out.println(endWith("dario", "sierra dario"));
+			System.out.println(contains("currito", "que locotron eres currito mio"));
 			}
 		}
 
