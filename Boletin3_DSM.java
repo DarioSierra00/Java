@@ -86,9 +86,22 @@ public class Boletin3_DSM {
 				}return resultado;
 			}
 		
-		/*public static Boolean esCapicua(double numero) {
+		public static Boolean esCapicua(double numero) {
+			StringBuilder numeroAlReves = new StringBuilder();
+			String numeroStr = String.valueOf(numero);
+			Boolean resultado = false;
 			
-			}*/
+			for (int i = numeroStr.length()-1; i>=0; i--) {
+				if (numeroStr.charAt(i)== '.') {
+					numeroStr = numeroStr.substring(0,i) + numeroStr.substring(i+1);
+					i--;
+				}
+				numeroAlReves.append(numeroStr.charAt(i));
+				
+			}if (numeroAlReves.substring(0).equals(numeroStr.substring(0))) {
+				resultado = true;
+			}return resultado;
+			}
 		
 		public static void main(String[] args) {
 			System.out.println(banderaFor("HOLA LOCOTRONES", 4));
@@ -97,7 +110,7 @@ public class Boletin3_DSM {
 			System.out.println(endWith("dario", "sierra dario"));
 			System.out.println(contains("currito", "que locotron eres currito mio"));
 			System.out.println(esPalindromo("somos o no somos"));
-			//System.out.println(esCapicua(303));
+			System.out.println(esCapicua(124.21));
 			}
 		}
 
