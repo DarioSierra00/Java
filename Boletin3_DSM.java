@@ -139,9 +139,28 @@ public class Boletin3_DSM {
 			}return resultado.toString();
 		}
 		
-		/*Diseñar una función que reciba como parámetro tres cadenas, la primera será una
-frase y deberá buscar si existe la palabra que recibe como segundo parámetro y
-reemplazarla por la tercera.*/
+		public static String numeroPalabrasFrasesParrafos(String cadena) {
+			int contPalabra = 0;
+			int contFrase = 0;
+			int contParrafo = 0;
+			
+			for (int i = 0; i < cadena.length(); i++) {
+				if (i==0 && !cadena.substring(i, i+1).equals(" ")) {
+					contPalabra ++;
+				}else if(!cadena.substring(i, i+1).isBlank()&&cadena.substring(i-1, i).isBlank()) {
+					contPalabra ++;
+				}else if (cadena.substring(i,i+1).isBlank() && cadena.substring(i-1,i).equals(".")) {
+					contFrase ++;
+				}else if (cadena.substring(i,i+1).equals("\n")) {
+					contParrafo++;
+				}
+			}return("En la cadena hay: "+ contPalabra + " palabras, "+ contFrase + " frases, y " + contParrafo + " párrafos");
+		}
+		
+		/*. Escribir una función que devuelva el número de palabras, frases y párrafos que
+existen en una cadena de texto que recibe como parámetro. Ten en cuenta que entre
+dos palabras puede haber más de un blanco, las frases se separan por puntos y los
+párrafos por saltos de línea.*/
 		
 		public static void main(String[] args) {
 			System.out.println(banderaFor("HOLA LOCOTRONES", 4));
@@ -153,6 +172,7 @@ reemplazarla por la tercera.*/
 			System.out.println(esCapicua(124.21));
 			System.out.println(palabraEscondida("shybaoxlna", "hola"));
 			System.out.println(reemplazarPalabra("currito mio eres un loco", "loco", "locotron"));
+			System.out.println(numeroPalabrasFrasesParrafos("Dos palabras una frase. \n y un parrafo"));
 			}
 		}
 

@@ -1,4 +1,4 @@
-package Boletin2_DSM;
+package com.edu;
 
 import java.util.Scanner;
 
