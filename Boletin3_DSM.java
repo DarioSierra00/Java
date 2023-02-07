@@ -103,6 +103,46 @@ public class Boletin3_DSM {
 			}return resultado;
 			}
 		
+		public static Boolean palabraEscondida(String cadena, String palabraBuscar) {
+			int cont = 0;
+			Boolean palabraEscondida = false;
+			
+			for (int i = 0; i < cadena.length(); i++) {
+				if (cont < palabraBuscar.length()) {
+					if ((palabraBuscar.charAt(cont)) == cadena.charAt(i)) {
+						cont ++;
+					}
+				}if (cont == palabraBuscar.length()){
+					palabraEscondida = true;
+				}
+			}return palabraEscondida;
+		}
+		
+		public static String reemplazarPalabra(String cadena, String palabraBuscar, String palabraReemplazo) {
+			StringBuilder resultado = new StringBuilder();
+			String tmp = "";
+			int coincidencia = 0;
+			
+			for (int i = 0; i < cadena.length(); i++) {
+				if (cadena.charAt(i) == palabraBuscar.charAt(coincidencia)) {
+					tmp+= palabraBuscar.charAt(coincidencia);
+					coincidencia++;
+					if (palabraBuscar.length() == coincidencia) {
+						coincidencia=0;
+						resultado.append(palabraReemplazo);
+						tmp = "";
+					}
+				}else {
+					resultado.append(tmp + cadena.charAt(i));
+					coincidencia = 0;
+				}
+			}return resultado.toString();
+		}
+		
+		/*Diseñar una función que reciba como parámetro tres cadenas, la primera será una
+frase y deberá buscar si existe la palabra que recibe como segundo parámetro y
+reemplazarla por la tercera.*/
+		
 		public static void main(String[] args) {
 			System.out.println(banderaFor("HOLA LOCOTRONES", 4));
 			System.out.println(contarPalabra("Hola", "HolalocoHola"));
@@ -111,6 +151,8 @@ public class Boletin3_DSM {
 			System.out.println(contains("currito", "que locotron eres currito mio"));
 			System.out.println(esPalindromo("somos o no somos"));
 			System.out.println(esCapicua(124.21));
+			System.out.println(palabraEscondida("shybaoxlna", "hola"));
+			System.out.println(reemplazarPalabra("currito mio eres un loco", "loco", "locotron"));
 			}
 		}
 
