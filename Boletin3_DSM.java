@@ -2,23 +2,54 @@ package com.edu;
 
 public class Boletin3_DSM {
 
-		public static String banderaFor(String cadena, int posicion) {
-
-			String resultado = "";
-			
-			for (int i= 0; i < cadena.length(); i++) {
-			
-				if ((posicion%2==0) && (i%2==0)) {
-					resultado += cadena.charAt(i);
-			
-				}else if ((posicion%2!=0) && (i%2!=0)) {
-					resultado += cadena.charAt(i);
-				}
-			}return resultado;
+	public static String banderaFor(String cadena,boolean esPar) {
+		StringBuilder resultado = new StringBuilder();
+		for(int i = 0; i < cadena.length();i++) {
+			if((esPar) && (i % 2 == 0)) {
+					resultado.append(cadena.charAt(i));
+			}else if((!esPar) && (i % 2 != 0)) {
+					resultado.append(cadena.charAt(i));
 			}
-		//public static int divisiblePor3(int numero) {
-			//}
+		}return resultado.toString();
+	}
+	
+	public static String banderaDoWhile(String cadena, boolean esPar) {
+		StringBuilder resultado = new StringBuilder();
+		int cont = 0;
+		do {
+			if((esPar) && (cont % 2 == 0)) {
+				resultado.append(cadena.charAt(cont));
+			}else if((!esPar) && (cont % 2 != 0)){
+				resultado.append(cadena.charAt(cont));
+			}cont ++;
+		}while(cont < cadena.length());
+		return resultado.toString();
+	}
+	
+	public static String banderaWhile(String cadena, boolean esPar) {
+		StringBuilder resultado = new StringBuilder();
+		int cont = 0;
+		while(cont < cadena.length()) {
+			if((esPar) && (cont % 2 == 0)) {
+				resultado.append(cadena.charAt(cont));
+			}else if((!esPar) && (cont % 2 != 0)){
+				resultado.append(cadena.charAt(cont));
+			}cont ++;
+		}return resultado.toString();
+	}
+		
+		public static boolean esDivisibleEntreTres(int numero) {
+			boolean divisible = false;
+			String numeroString = String.valueOf(numero);
+			int resultado = 0;
+			for(int i = 0;i<numeroString.length();i++) {
+				resultado += Integer.valueOf(numeroString.substring(i, i+1));
+			}if(resultado%3 == 0) {
+				divisible = true;
+			}return divisible;
 			
+		}
+		
 		public static int contarPalabra(String palabraContar, String cadena) {
 			int numeroVeces = 0;
 			int cont = 0;
@@ -157,14 +188,52 @@ public class Boletin3_DSM {
 			}return("En la cadena hay: "+ contPalabra + " palabras, "+ contFrase + " frases, y " + contParrafo + " párrafos");
 		}
 		
-		/*. Escribir una función que devuelva el número de palabras, frases y párrafos que
-existen en una cadena de texto que recibe como parámetro. Ten en cuenta que entre
-dos palabras puede haber más de un blanco, las frases se separan por puntos y los
-párrafos por saltos de línea.*/
+		public static final String ABECEDARIO = "abcdefghijklmnopqrstuvwxyz";
 		
+		public static String codificacionCaracter(char caracter, int desplazamiento) {
+			String resultado = "";
+			
+			for (int i = 0; i<=ABECEDARIO.length()-1 ; i++) {
+				if (ABECEDARIO.charAt(i) == caracter) {
+					resultado += ABECEDARIO.charAt(i+desplazamiento);
+				}
+			}return resultado;
+			
+		}
+		
+		public static String codificacionCadena(String cadena, int desplazamiento) {
+			String resultado = "";
+			int cont = 0;
+			cadena = cadena.toLowerCase();
+			
+			while (cont<cadena.length()) {
+				resultado += codificacionCaracter(cadena.charAt(cont), desplazamiento);
+				cont++;
+			}return resultado;
+		
+		}
+		
+		public static String equivalenciaCodificacion(String cadena, String cadenaCifrada) {
+			String codificado = "",resultado = "no es equivalente";
+			int cont = 0;
+			cadena= cadena.toLowerCase();
+			cadenaCifrada = cadenaCifrada.toLowerCase();
+			
+			while (cont<cadena.length()) {
+				codificado += codificacionCadena(cadena, cont);
+				if (cadenaCifrada.equals(codificado)) {
+					resultado = "son equivalentes";
+				}
+			}return resultado;
+		}
+		
+
 		public static void main(String[] args) {
-			System.out.println(banderaFor("HOLA LOCOTRONES", 4));
+			System.out.println(banderaFor("dario",true));
+			System.out.println(banderaDoWhile("dario", false));
+			System.out.println(banderaWhile("dario", true));
 			System.out.println(contarPalabra("Hola", "HolalocoHola"));
+			System.out.println(esDivisibleEntreTres(3));
 			System.out.println(startWith("dario", "dario sierra"));
 			System.out.println(endWith("dario", "sierra dario"));
 			System.out.println(contains("currito", "que locotron eres currito mio"));
@@ -173,6 +242,9 @@ párrafos por saltos de línea.*/
 			System.out.println(palabraEscondida("shybaoxlna", "hola"));
 			System.out.println(reemplazarPalabra("currito mio eres un loco", "loco", "locotron"));
 			System.out.println(numeroPalabrasFrasesParrafos("Dos palabras una frase. \n y un parrafo"));
+			System.out.println(codificacionCaracter('b', 5));
+			System.out.println(codificacionCadena("casado", 3));
+			System.out.println(equivalenciaCodificacion("casado", "fdvdgr"));
 			}
 		}
 
