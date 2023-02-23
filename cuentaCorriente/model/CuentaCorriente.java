@@ -31,17 +31,17 @@ public class CuentaCorriente {
 	public void setIngresos(int ingresos) {
 		this.ingresos = ingresos;
 	}
-	public double realizarReintegro(double reintegro, double saldo) {
-		if (reintegro>0 && saldo > 0) {
-			saldo -=reintegro;
+	public void realizarReintegro(int retirar) {
+		if (retirar <= this.saldo && retirar > 0) {
+			this.saldo -=retirar;
 			this.reintegro++;
-		}return saldo;
+		}
 	}
-	public double realizarIngreso(double ingresos, double saldo) {
-		if (ingresos>0 && saldo > 0) {
-			saldo +=ingresos;
+	public void realizarIngreso(int ingresar) {
+		if (ingresar>0) {
+			this.saldo +=ingresar;
 			this.ingresos++;
-		}return saldo;
+		}
 	}
 	
 	
