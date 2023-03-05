@@ -4,33 +4,78 @@ import java.util.Objects;
 
 public class Linea {
 	
+	Punto puntoA;
+	Punto puntoB;
+		
+	Punto p = new Punto();
+	
 	public Linea() {
+		this.puntoA = new Punto(0,0);
+		this.puntoB = new Punto(0,0);
+	}
+	
+	
+	public Linea(Punto puntoA, Punto puntoB) {
 		super();
+		this.puntoA = puntoA;
+		this.puntoB = puntoB;
 	}
 
-	public Punto inicio;
-	public Punto fin;
-	
-	public Linea(Punto inicio, Punto fin) {
-		super();
-		this.inicio = inicio;
-		this.fin = fin;
+
+	public Punto getPuntoA() {
+		return puntoA;
+	}
+
+
+	public void setPuntoA(Punto puntoA) {
+		this.puntoA = puntoA;
+	}
+
+
+	public Punto getPuntoB() {
+		return puntoB;
+	}
+
+
+	public void setPuntoB(Punto puntoB) {
+		this.puntoB = puntoB;
+	}
+
+	public boolean equals(Object obj) {
+		boolean resultado = false;
+		if (this == obj)
+			resultado = true;
+		else if (obj == null)
+			resultado = false;
+		else if (getClass() != obj.getClass())
+			resultado = false;
+		Linea other = (Linea) obj;
+		return resultado && Objects.equals(puntoA, other.puntoA) && Objects.equals(puntoB, other.puntoB);
 	}
 	
+	public void moverDerecha(double cantidad) {
+		this.puntoA.sumar1PuntoX(cantidad);
+		this.puntoB.sumar1PuntoY(cantidad);		
+	}
+	
+	public void moverIzquierda(double cantidad) {
+		this.puntoA.restar1PuntoX(cantidad);
+		this.puntoB.restar1PuntoY(cantidad);	
+	}
+	
+	public void moverArriba(double cantidad) {
+		this.puntoA.sumar1PuntoY(cantidad);
+		this.puntoB.sumar1PuntoY(cantidad);
+	}
+	
+	public void moverAbajo(double cantidad) {
+		this.puntoA.restar1PuntoY(cantidad);
+		this.puntoB.restar1PuntoY(cantidad);
+	}
+
 
 	@Override
-	public boolean equals(Object obj) {
-		boolean sonIguales= this==obj;
-		if (obj!= null && !sonIguales && obj instanceof Linea) {
-			Linea other = (Linea) obj;
-			sonIguales = Objects.equals(fin, other.fin) && Objects.equals(inicio, other.inicio);
-		}return sonIguales;
-		
-	}
-
-
-	public void moverDerecha(double desplazamiento) {
-		this.inicio.moverDerecha(desplazamiento);
-		this.fin.moverDerecha(desplazamiento);
+	public String toString() {
+		return "Linea [puntoA=" + puntoA + ", puntoB=" + puntoB + "]";
 	}
 }
