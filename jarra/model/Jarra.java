@@ -4,12 +4,12 @@ import java.util.Objects;
 
 public class Jarra {
 	
-	private double totalAgua;
+	private static double totalAgua;
 	private double capacidad;
 	private double cantidadAgua;
 	
-	public Jarra() {
-		super();
+	public Jarra(int capacidad) {
+		this.capacidad = capacidad;
 	}
 
 
@@ -20,7 +20,7 @@ public class Jarra {
 		this.cantidadAgua = cantidadAgua;
 	}
 
-	public double getTotalAgua() {
+	public static double getTotalAgua() {
 		return totalAgua;
 	}
 
@@ -51,6 +51,7 @@ public class Jarra {
 
 	public void llenarJarra() {
 		this.cantidadAgua = this.capacidad;
+		this.totalAgua += this.capacidad;
 	}
 	
 	public void vaciarJarra() {
@@ -75,8 +76,17 @@ public class Jarra {
 			return false;
 		Jarra other = (Jarra) obj;
 		return Double.doubleToLongBits(cantidadAgua) == Double.doubleToLongBits(other.cantidadAgua)
-				&& Double.doubleToLongBits(capacidad) == Double.doubleToLongBits(other.capacidad);
+				&& Double.doubleToLongBits(capacidad) == Double.doubleToLongBits(other.capacidad)
+				&& Double.doubleToLongBits(totalAgua) == Double.doubleToLongBits(other.totalAgua);
 	}
+
+
+	@Override
+	public String toString() {
+		return "Jarra [totalAgua=" + totalAgua + ", capacidad=" + capacidad + ", cantidadAgua=" + cantidadAgua + "]";
+	}
+	
+	
 	
 	
 }

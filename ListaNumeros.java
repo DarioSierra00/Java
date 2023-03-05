@@ -25,7 +25,7 @@ public class ListaNumeros {
 		
 	}
 	
-	public static int[] digitoQueMasTerminan(int[] array) {
+/*	public static int[] digitoQueMasTerminan(int[] array) {
 		int[] nums = {1,3,500,2,33};
 			
 		StringBuilder sb = new StringBuilder();
@@ -34,6 +34,6 @@ public class ListaNumeros {
 			
 			int cantidad = filtrarPorDigitoFinal(array,DIGITOS.charAt(i));
 		}
-	}
+	}*/
 }
 	
