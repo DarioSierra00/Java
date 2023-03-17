@@ -24,8 +24,13 @@ public class ListaNumeros {
 		}return cantidad;
 		
 	}
+<<<<<<< HEAD
 	
 /*	public static int[] digitoQueMasTerminan(int[] array) {
+=======
+	/*
+	public static int[] digitoQueMasTerminan(int[] array) {
+>>>>>>> 497241a (PruebaEvaluable)
 		int[] nums = {1,3,500,2,33};
 			
 		StringBuilder sb = new StringBuilder();
