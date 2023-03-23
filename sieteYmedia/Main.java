@@ -10,7 +10,7 @@ public class Main {
 
 	public static void main(String[] args) throws Exception {
 		String respuesta;
-		double jugador= 0;
+		double jugador= 0; 
 		double banca= 0;
 		
 		Scanner sc = new Scanner(System.in);
