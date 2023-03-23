@@ -28,7 +28,26 @@ public class Vehiculo {
 	
 	
 	public String getMatricula() {
-		return matricula;
+		return this.matricula;
+	}
+
+
+	public String getMarca() {
+		return this.marca;
+	}
+
+
+	public String getModelo() {
+		return this.modelo;
+	}
+
+	public TipoVehiculo getTipoVehiculo() {
+		return this.TipoVehiculo;
+	}
+
+
+	public Combustible getTipoCombustible() {
+		return this.tipoCombustible;
 	}
 
 
@@ -45,12 +64,20 @@ public class Vehiculo {
 			}
 		}return esValida;
 	}
+	
+	public int compareTo(Vehiculo v) {
+		int compare=2;
+		if(v!=null) {
+			compare=this.fecha.compareTo(v.fecha);
+		}
+		return compare;
+	}
 
 
 	@Override
 	public String toString() {
-		return "Vehiculo [marca=" + marca + ", modelo=" + modelo + ", matricula=" + matricula + ", tipoCombustible="
-				+ tipoCombustible + ", fecha=" + fecha + ", TipoVehiculo=" + TipoVehiculo;
+		return "Vehiculo con marca " + marca + ", modelo " + modelo + ", con matricula " + matricula + ", un tipoCombustible "
+				+ tipoCombustible + ", fecha " + fecha + ", y su TipoVehiculo " + TipoVehiculo;
 	}
 	
 	
