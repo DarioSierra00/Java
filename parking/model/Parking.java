@@ -2,6 +2,8 @@ package com.edu.parking.model;
 import java.util.Arrays;
 
 import com.edu.parking.comparables.CompararPorMarca;
+import com.edu.parking.comparables.CompararPorMatricula;
+import com.edu.parking.comparables.CompararTipoCombustible;
 import com.edu.parking.model.Vehiculo;
 
 public class Parking implements Comparable<Vehiculo>{
@@ -76,8 +78,13 @@ public class Parking implements Comparable<Vehiculo>{
 	}
 	
 	public String compararPorTipoCombustible() {
-		//Arrays.sort(this.vehiculos, new CompararPorTipoCombustible());
-		return "a";
+		Arrays.sort(this.vehiculos, new CompararTipoCombustible());
+		return Arrays.toString(this.vehiculos);
+	}
+	
+	public String compararPorMatricula() {
+		Arrays.sort(this.vehiculos, new CompararPorMatricula());
+		return Arrays.toString(this.vehiculos);
 	}
 
 	@Override

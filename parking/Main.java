@@ -11,7 +11,9 @@ public class Main {
 
 	public static void main(String[] args) {
 	Vehiculo v = new Vehiculo("Audi", "R8", "LWS8364", Combustible.GASOLINA, LocalDate.of(2023, 9, 1), TipoVehiculo.AUTOMOVIL);
-	Vehiculo v1 = new Vehiculo("Mercedes", "GLA", "LWS8322", Combustible.GASOLINA, LocalDate.of(2023, 9, 2), TipoVehiculo.AUTOMOVIL);
+	Vehiculo v1 = new Vehiculo("Mercedes", "GLA", "LWR8322", Combustible.GASOLINA, LocalDate.of(2023, 9, 2), TipoVehiculo.AUTOMOVIL);
+	Vehiculo v12 = new Vehiculo("Mercedes", "GLC", "LWS8322", Combustible.GASOLINA, LocalDate.of(2023, 9, 2), TipoVehiculo.AUTOMOVIL);
+	Vehiculo v2 = new Vehiculo("Opel", "Corsa", "LNH7645", Combustible.GASOIL, LocalDate.of(2023, 9, 5), TipoVehiculo.AUTOMOVIL);
 
 	Parking p = new Parking();
 	
@@ -19,15 +21,11 @@ public class Main {
 	System.out.println(p.añadirVehiculo(v));
 	System.out.println(p.añadirVehiculo(v1));
 	System.out.println("Ordenar por fecha de entrada");
-	System.out.println(p.comparaPorFecha());	
-	System.out.println("Ordenar por marca");
-	System.out.println(p.comparaPorFecha());
-	System.out.println("Ordenar por modelo");
-	System.out.println(p.comparaPorFecha());
-	System.out.println("Ordenar por tipo");
-	System.out.println(p.ComparableTipoCombustible());
-	System.out.println("Ordenar por combustible");
-	System.out.println(p.compararPorCombustible());
+	//System.out.println(p.comparaPorFecha());	
+	System.out.println("Ordenar por marca y modelo");
+	System.out.println(p.compararPorMarcaYModelo());
+	System.out.println("Ordenar por tipo y tipoCombustible");
+	System.out.println(p.compararPorTipoCombustible());
 	System.out.println("Ordenar por matricula");
 	System.out.println(p.compararPorMatricula());
 	
