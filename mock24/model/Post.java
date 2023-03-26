@@ -2,10 +2,13 @@ package com.edu.mock24.model;
 
 public class Post extends Publicacion{
 
-	public Post(String Usuario) {
-		super(Usuario);
-	}
+	private String tema;
 	
+	public Post(String texto, Usuario login, String tema) {
+		super(texto, login);
+		this.tema = tema;
+	}
+
 	protected void setTexto(String texto) {
 		
 	}

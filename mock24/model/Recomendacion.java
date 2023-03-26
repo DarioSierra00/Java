@@ -2,8 +2,13 @@ package com.edu.mock24.model;
 
 public class Recomendacion extends Publicacion{
 	
-	public Recomendacion(String Usuario, int numeroEstrellas) {
-		super(Usuario);
+
+	private final int MAXIMO_CARACTERES=100;
+	private final int MINIMO_CARACTERES=200;
+	
+	public Recomendacion(String texto, Usuario login , int numEstrella) {
+		super(texto, login);
+		
 	}
 	
 	protected void setTexto(String texto) {

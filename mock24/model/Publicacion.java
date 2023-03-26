@@ -2,6 +2,8 @@ package com.edu.mock24.model;
 
 import java.time.LocalDateTime;
 
+import com.edu.mock24.model.interfaces.Valorable;
+
 public abstract class Publicacion implements Valorable{
 	protected String texto;
 	private LocalDateTime fechaCreacion;
@@ -9,7 +11,7 @@ public abstract class Publicacion implements Valorable{
 	private static int codigoSiguiente = 0;
 	Usuario usuario;
 	
-	public Publicacion(String Usuario) {
+	public Publicacion(String texto, Usuario login) {
 		super();
 	}
 	
@@ -45,8 +47,8 @@ public abstract class Publicacion implements Valorable{
 
 	@Override
 	public String toString() {
-		return "Publicacion : " + texto + "\n "+" Valoracion " + valoracion
-			+"\n FechaCreacion" + fechaCreacion +  "\n usuario=" + usuario;
+		return "Publicacion : " + texto + "\n "+" Valoracion: " + valoracion
+			+"\n usuario: " + usuario + "FechaCreacion: " + fechaCreacion;
 	}
 	
 	
