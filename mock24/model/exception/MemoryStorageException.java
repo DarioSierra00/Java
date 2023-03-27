@@ -1,7 +1,7 @@
 package com.edu.mock24.model.exception;
 
-public class MemoryStorageException extends Exception{
-	
+public class MemoryStorageException extends Exception {
+
 	public MemoryStorageException() {
 	}
 
@@ -21,5 +21,5 @@ public class MemoryStorageException extends Exception{
 			boolean writableStackTrace) {
 		super(message, cause, enableSuppression, writableStackTrace);
 	}
-	
+
 }

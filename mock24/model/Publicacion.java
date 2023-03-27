@@ -2,26 +2,33 @@ package com.edu.mock24.model;
 
 import java.time.LocalDateTime;
 
+import com.edu.mock24.model.enumerados.Valoraciones;
+import com.edu.mock24.model.exception.PublicacionException;
 import com.edu.mock24.model.interfaces.Valorable;
 
 public abstract class Publicacion implements Valorable{
 	protected String texto;
 	private LocalDateTime fechaCreacion;
 	protected int valoracion;
+	private int codigo;
 	private static int codigoSiguiente = 0;
 	Usuario usuario;
 	
-	public Publicacion(String texto, Usuario login) {
+	public Publicacion(String texto, Usuario login) throws PublicacionException {
 		super();
+		this.fechaCreacion = LocalDateTime.now();
+		this.codigoSiguiente++;
+		this.usuario = login;
+		setTexto(texto);
 	}
 	
 	protected String getTexto() {
 		return this.texto;
 	}
 	
-	protected void setTexto(String texto) {
-		this.texto=texto;
-	}
+	protected abstract void setTexto(String texto) throws PublicacionException;
+		
+	
 	
 	public LocalDateTime getFechaCreacion() {
 		return this.fechaCreacion;
@@ -31,7 +38,8 @@ public abstract class Publicacion implements Valorable{
 		return this.valoracion;
 	}
 	
-	public boolean valorar(String valoracion) {
+	public boolean valorar(Valoraciones valoracion) {
+		this.valoracion=valoracion.getValoracion();
 		return true;
 	}
 	
@@ -47,9 +55,12 @@ public abstract class Publicacion implements Valorable{
 
 	@Override
 	public String toString() {
-		return "Publicacion : " + texto + "\n "+" Valoracion: " + valoracion
-			+"\n usuario: " + usuario + "FechaCreacion: " + fechaCreacion;
-	}
+        return String.format("Publicación: %s \r\n"
+                + "Realizada por: %s \r\n"
+                + "Valoración: %s \r\n"
+                + "Fecha de publicación: %s \n"
+                , this.texto,getLoginUsuario(),getValoracion(),getFechaCreacion());
+    }
 	
 	
 }

@@ -1,6 +1,7 @@
 package com.edu.mock24.model;
 
 import com.edu.mock24.model.exception.MemoryStorageException;
+import com.edu.mock24.model.exception.PublicacionException;
 
 public class MemoryStorage {
 	private static final int NUM_MAXIMO_USUARIOS = 15;
@@ -31,7 +32,7 @@ public class MemoryStorage {
 	}
 	
 	
-	public void addPublicacion(String texto, String login) {
+	public void addPublicacion(String texto, String login) throws PublicacionException {
 		boolean userEncontrado = false;
 		Usuario usuario = encontrarUsuario(login);
 		if(usuario != null) {
@@ -45,7 +46,7 @@ public class MemoryStorage {
 		}
 	}
 	
-	public void addPublicacion(String texto, String login, String tema) {
+	public void addPublicacion(String texto, String login, String tema) throws PublicacionException {
 		boolean userEncontrado = false;
 		Usuario usuario = encontrarUsuario(login);
 		if(usuario != null) {
@@ -59,7 +60,7 @@ public class MemoryStorage {
 		}
 	}
 	
-	public void addPublicacion(String texto, String login, int numEstrella) {
+	public void addPublicacion(String texto, String login, int numEstrella) throws PublicacionException {
 		boolean userEncontrado= false;
 		Usuario usuario = encontrarUsuario(login);
 		if(usuario != null) {
@@ -112,7 +113,7 @@ public class MemoryStorage {
 	public Usuario encontrarUsuario(String login) {
 		Usuario usuario = null;
 		for(int i = 0; i<NUM_MAXIMO_USUARIOS; i++) {
-			if(this.usuarios[i].getLogin().equals(login)) {
+			if(this.usuarios[i]!=null && this.usuarios[i].getLogin().equals(login)) {
 				usuario = this.usuarios[i];
 			}
 		}return usuario;

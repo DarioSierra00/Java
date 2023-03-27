@@ -1,7 +1,8 @@
 package com.edu.mock24.model.exception;
 
 public class PublicacionException extends Exception{
-
+	
+	
 	public PublicacionException() {
 	}
 
