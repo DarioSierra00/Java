@@ -28,7 +28,8 @@ public class Main {
 		while(jornada < 1 && jornada > 39) {
 			System.out.println("Introduce una jornada correcta (1-38): ");
 			jornada = Integer.valueOf(sc.nextLine());
-		}Partido p1 = new Partido(jornada,local,visitante);
+		}
+		Partido p1 = new Partido(jornada,local,visitante);
 		System.out.println("Introduce el resultado del partido: ");
 		p1.ponerResultado(sc.nextLine());
 		p1.AsignarResultadoQuiniela();

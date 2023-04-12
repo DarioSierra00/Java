@@ -10,8 +10,11 @@ public class Recomendacion extends Publicacion{
 	
 	public Recomendacion(String texto, Usuario login , int numEstrella) throws PublicacionException {
 		super(texto, login);
-		if(this.numEstrella>=1 && this.numEstrella<=5) {
+		if(numEstrella>=1 && numEstrella<=5) {
 			this.numEstrella= numEstrella;
+		}
+		else{
+			throw new PublicacionException("El numero de estrellas no es válido");
 		}
 	}
 	

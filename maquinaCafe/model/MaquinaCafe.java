@@ -49,9 +49,9 @@ public class MaquinaCafe {
 	public String servirCafe(double dinero) {
 		String resultado = "";
 		if(dinero > this.monedero) {
-			resultado = "Error, no disponemos de cambio para esa cantidad.";
+			resultado = "NO, Error, no disponemos de cambio para esa cantidad.";
 		}else if(dinero < 1) {
-			resultado = "Error, la cantidad introducida es menor que el precio del café.";
+			resultado = "aError, la cantidad introducida es menor que el precio del café.";
 		}else if(this.depositoCafe < 1) {
 			resultado = "Error, nos hemos quedado sin café.";
 		}else {
@@ -59,9 +59,9 @@ public class MaquinaCafe {
 			this.depositoVaso --;
 			this.monedero += CAFE;
 			if(dinero-CAFE == 0) {
-				resultado = "Producto servido.";
+				resultado = "sProducto servido.";
 			}else {
-				resultado = "Producto servido, aquí tiene su cambio de: " + (dinero-CAFE);
+				resultado = "1Producto servido, aquí tiene su cambio de: " + (dinero-CAFE);
 			}
 		}
 		return resultado;
@@ -81,7 +81,7 @@ public class MaquinaCafe {
 			if(dinero-LECHE == 0) {
 				resultado = "Producto servido.";
 			}else {
-				resultado = "Producto servido, aquí tiene su cambio de: " + (dinero-LECHE);
+				resultado = "sProducto servido, aquí tiene su cambio de: " + (dinero-LECHE);
 			}
 		}
 		return resultado;
@@ -106,7 +106,7 @@ public class MaquinaCafe {
 			if(dinero-CAFELECHE == 0) {
 				resultado = "Producto servido.";
 			}else {
-				resultado = "Producto servido, aquí tiene su cambio de: " + (dinero-CAFELECHE);
+				resultado = "cProducto servido, aquí tiene su cambio de: " + (dinero-CAFELECHE);
 			}
 		}
 		return resultado;

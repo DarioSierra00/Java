@@ -1,6 +1,7 @@
 package com.edu.mock24;
 
 import com.edu.mock24.model.MemoryStorage;
+import com.edu.mock24.model.Post;
 import com.edu.mock24.model.Publicacion;
 import com.edu.mock24.model.Tweet;
 import com.edu.mock24.model.Usuario;
@@ -16,11 +17,13 @@ public class Main {
         Publicacion p = new Tweet("lol",new Usuario("dario","sierra"));
         p.valorar(Valoraciones.BUENA);
         System.out.println(p);
+        Publicacion p1 = new Post("lool", new Usuario("dario", "sierroo"), "locooooo");
         Usuario u = new Usuario("Lopeeh","gomez");
         MemoryStorage m = new MemoryStorage();
         m.addUsuario("Dario", "Sierra");
         m.addPublicacion("curritoo ñiii", "Sierra");
-        System.out.println(m.mostrarTweets());
+        m.addPublicacion("lool", "dario");
+        System.out.println(p1);
         m.mostrarPosts();
         System.out.println(m.mostrarRecomendacion());
 

@@ -23,7 +23,7 @@ public class Main {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int opcion = 0;
-		Plato p= new Plato("Currito a la plancha", 14.50);
+		
 		
 		for(int i = 0; i<platillos.length; i++) {
 			platillos[i] = new Plato("prueba", 15);

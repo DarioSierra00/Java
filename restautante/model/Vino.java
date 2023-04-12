@@ -12,7 +12,7 @@ public class Vino {
 	
 	public Vino(String nombre, double graduacion) {
 		super();
-		if(this.graduacion>0) {
+		if(graduacion>0) {
 			this.nombre = nombre;
 			this.graduacion = graduacion;
 		}

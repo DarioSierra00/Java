@@ -78,10 +78,6 @@ public class boletin2_DSM {
 		}return resultado;
 	}
 	
-	/*public static int segundosEntre(int hora1, int min1, int sec1, int hora2, int min2, int sec2) {
-		int resultado = 0;
-		
-	}*/
 	public static String toBinary(int binario) {
 
 		String resultado = "";
@@ -124,11 +120,8 @@ public class boletin2_DSM {
 			}
 		}return num1;
 	}
-	/*Realiza un método llamado gcd (greaterCommonDivisor) que recibirá dos números y
-devuelva el máximo común divisor según el algoritmo de Euclides.*/
 	
 	public static void main(String[] args) {
-		Scanner sc = new Scanner (System.in);
 		/*
 		System.out.println("Introduce un numero para darle la vuelta: ");
 		String numero = (sc.nextLine());
