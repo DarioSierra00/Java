@@ -16,6 +16,15 @@ public class PaginaWeb {
 	public LocalDateTime getFecha() {
 		return this.fecha;
 	}
+
+	public String getUrl() {
+		return this.url;
+	}
+
+	@Override
+	public String toString() {
+		return String.format("Pagina Web con url %s y fecha %s", this.url, this.fecha);
+	}
 	
 	
 	

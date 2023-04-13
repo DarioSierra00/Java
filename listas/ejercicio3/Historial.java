@@ -1,7 +1,7 @@
 package com.edu.listas.ejercicio3;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 public class Historial {
@@ -25,13 +25,34 @@ public class Historial {
 		}
 	}
 	
-	public String mostrarHistorialCompleto() {
-		return this.historial.toString();
+	public Historial mostrarHistorialCompleto() {
+		return this;
 	}
 	
-	public String mostrarHistorialDia() {
-		
+	public Historial mostrarHistorialDia(int dia) throws HistorialException {
+		Historial hdia = new Historial();
+		for(PaginaWeb p: this.historial) {
+			if(p!=null && p.getFecha().getDayOfMonth()== dia) {
+				hdia.addPaginaHistorial(p);
+			}
+		}return hdia;
 	}
 	
+	public void borrarHistorial() {
+		this.historial.clear();
+	}
+	
+	public void borrarVisitasPagina(String url) {
+		Iterator<PaginaWeb> iPagWeb = this.historial.iterator();
+		while(url!=null && iPagWeb.hasNext()) {
+			if(iPagWeb.next().getUrl().equals(url)) {
+				iPagWeb.remove();
+			}
+		}
+	}
+	
+	public String toString() {
+		return String.format("Historial %s", this.historial.toString());
+	}
 	
 }

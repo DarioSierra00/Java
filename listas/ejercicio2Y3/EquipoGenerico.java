@@ -40,7 +40,8 @@ public class EquipoGenerico<T> {
 		return tipo;
 	}
 	
-	public EquipoGenerico<T> unionEquipo(Equipo e) {
+	
+	public EquipoGenerico unionEquipo(EquipoGenerico e) {
 		if(e!=null && !this.grupoAlumnos.equals(e.grupoAlumnos)) {
 			this.grupoAlumnos.addAll(e.grupoAlumnos);
 		}

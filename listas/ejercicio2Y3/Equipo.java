@@ -33,11 +33,7 @@ import java.util.Set;
 		}
 		
 		public Alumno encontrarAlumno(Alumno a) {
-			Alumno alumno = null;
-			if(a!= null && this.grupoAlumnos.indexOf(a)!= -1) {
-				alumno = a;
-			}
-			return alumno;
+			return this.grupoAlumnos.contains(a)?a:null;
 		}
 		
 		public Equipo unionEquipo(Equipo e) {
