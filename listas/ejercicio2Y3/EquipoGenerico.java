@@ -8,7 +8,7 @@ import java.util.Set;
 public class EquipoGenerico<T> {
 	
 	String nombreDelEquipo;
-	List<T> grupoAlumnos = new ArrayList<>();
+	List<T> elementos = new ArrayList<>();
 
 	
 	public EquipoGenerico(String nombreDelEquipo) {
@@ -18,7 +18,7 @@ public class EquipoGenerico<T> {
 
 	public void addAlumno(T t) throws AlumnoException {
 		if(t!=null && encontrarAlumno(t) == null) {
-			this.grupoAlumnos.add(t);
+			this.elementos.add(t);
 		}else {
 			throw new AlumnoException("El alumno existe");
 		}
@@ -26,7 +26,7 @@ public class EquipoGenerico<T> {
 	
 	public void deleteAlumno(T t) throws AlumnoException {
 		if(t!=null && encontrarAlumno(t)!=null) {
-			this.grupoAlumnos.remove(t);
+			this.elementos.remove(t);
 		}else {
 			throw new AlumnoException("El alumno no existe");
 		}
@@ -34,7 +34,7 @@ public class EquipoGenerico<T> {
 	
 	public T encontrarAlumno(T t) {
 		T tipo = null;
-		if(t!= null && this.grupoAlumnos.indexOf(t)!= -1) {
+		if(t!= null && this.elementos.indexOf(t)!= -1) {
 			tipo = t;
 		}
 		return tipo;
@@ -42,14 +42,14 @@ public class EquipoGenerico<T> {
 	
 	
 	public EquipoGenerico unionEquipo(EquipoGenerico e) {
-		if(e!=null && !this.grupoAlumnos.equals(e.grupoAlumnos)) {
-			this.grupoAlumnos.addAll(e.grupoAlumnos);
+		if(e!=null && !this.elementos.equals(e.elementos)) {
+			this.elementos.addAll(e.elementos);
 		}
 		return this;
 	}
 	
 	public Set<T> interseccionEquipo(Equipo e) {	
-		Set<T> interseccion = new HashSet<>(this.grupoAlumnos);
+		Set<T> interseccion = new HashSet<>(this.elementos);
 		if(e!=null) {
 			interseccion.retainAll(e.grupoAlumnos);
 		}
@@ -58,6 +58,6 @@ public class EquipoGenerico<T> {
 
 	@Override
 	public String toString() {
-		return String.format("nombreDelEquipo %s y sus participantes %s", this.nombreDelEquipo, this.grupoAlumnos.toString());
+		return String.format("nombreDelEquipo %s y sus participantes %s", this.nombreDelEquipo, this.elementos.toString());
 	}
 }
