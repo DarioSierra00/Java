@@ -18,15 +18,23 @@ public abstract class Persona {
 		this.listaMensajes = new ArrayList<>();
 	}
 
-	public abstract void enviarMensaje(Persona p, String texto);
+	public abstract void enviarMensaje(Persona p, String texto) throws MensajeException;
 	
 	public abstract String leerBuzon() throws MensajeException;
 	
 	public abstract void borrarMensaje(int numero);
 
+	public abstract String leerBuzonAlfabeticamente() throws MensajeException;
+	
 	public int getEdad() {
 		return this.edad;
 	}
+
+	public String getNombre() {
+		return nombre;
+	}
+	
+	
 
 	
 	
