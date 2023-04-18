@@ -4,12 +4,12 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 public class  Persona implements Desplazable,Comparable<Persona>{
-	private Genero genero;
+	private Genero_00 genero;
 	private String nombre;
 	private String apellidos;
 	private LocalDate fechaNacimiento;
 	
-	public Persona(Genero genero, String nombre, String apellidos, LocalDate fechaNacimiento) {
+	public Persona(Genero_00 genero, String nombre, String apellidos, LocalDate fechaNacimiento) {
 		super();
 		this.genero = genero;
 		this.nombre = nombre;
@@ -24,9 +24,9 @@ public class  Persona implements Desplazable,Comparable<Persona>{
 	
 	public int compareTo(Persona o) {
 		int resultado = 0;
-		if(this.genero.equals(Genero.HOMBRE) && o.genero.equals(Genero.MUJER)) {
+		if(this.genero.equals(Genero_00.HOMBRE) && o.genero.equals(Genero_00.MUJER)) {
 			resultado = 1;
-		}else if(this.genero.equals(Genero.MUJER) && o.genero.equals(Genero.HOMBRE)) {
+		}else if(this.genero.equals(Genero_00.MUJER) && o.genero.equals(Genero_00.HOMBRE)) {
 			resultado = -1;
 		}else {
 			resultado = 0;

@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Set;
 
 	public class Equipo {
-		String nombreDelEquipo;
-		List<Alumno> grupoAlumnos = new ArrayList<>();
+		private String nombreDelEquipo;
+		private List<Alumno> grupoAlumnos = new ArrayList<>();
 
 		
 		
@@ -27,7 +27,8 @@ import java.util.Set;
 		public void deleteAlumno(Alumno a) throws AlumnoException {
 			if(a!=null && encontrarAlumno(a)!=null) {
 				this.grupoAlumnos.remove(a);
-			}else {
+			}
+			else {
 				throw new AlumnoException("El alumno no existe");
 			}
 		}

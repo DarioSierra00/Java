@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 import com.edu.enumerados.model.ArrayUtils;
-import com.edu.enumerados.model.Genero;
+import com.edu.enumerados.model.Genero_00;
 import com.edu.enumerados.model.Persona;
 
 public class Main {
@@ -37,12 +37,12 @@ public class Main {
 		}while(fechaNacimiento == null);
 		
 		
-		Genero generoIntroducido = null;
+		Genero_00 generoIntroducido = null;
 		do {
 			try {
 				System.out.println("Introduzca el genero: ");
 				String generoComoString = new Scanner(System.in).nextLine();
-				generoIntroducido = Genero.valueOf(generoComoString.toUpperCase());
+				generoIntroducido = Genero_00.valueOf(generoComoString.toUpperCase());
 				
 			}catch(Exception e) {
 				System.out.println("El valor introducido no es correcto.. HOMBRE/MUJER");
@@ -50,9 +50,9 @@ public class Main {
 		}while(generoIntroducido==null);
 		
 	//	Persona p = new Persona(generoIntroducido, "Cristiano", "Ronaldo", LocalDate.now());
-		Persona antonio = new Persona(Genero.HOMBRE, "Antonio", "Sánchez", fechaNacimiento);
-		Persona juan = new Persona(Genero.HOMBRE, "Juan", "Sánchez", fechaNacimiento);
-		Persona currito = new Persona(Genero.MUJER, "Currito", "Sánchez", fechaNacimiento);
+		Persona antonio = new Persona(Genero_00.HOMBRE, "Antonio", "Sánchez", fechaNacimiento);
+		Persona juan = new Persona(Genero_00.HOMBRE, "Juan", "Sánchez", fechaNacimiento);
+		Persona currito = new Persona(Genero_00.MUJER, "Currito", "Sánchez", fechaNacimiento);
 		
 		Persona[] grupo = new Persona[3];
 		grupo[0]=antonio;

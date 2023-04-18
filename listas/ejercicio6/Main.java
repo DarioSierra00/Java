@@ -9,7 +9,7 @@ public class Main {
 		
 		d.addWord("Currito", "Es un chulaco");
 		d.addWord("Culero", "En mexicano");
-		d.addWord("Locotron", null);
+		d.addWord("Locotron", "Jajajaj");
 		System.out.println(d.listarPalabra("Cu"));
 		
 	}

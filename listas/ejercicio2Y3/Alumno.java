@@ -11,6 +11,8 @@ public class Alumno {
 		this.dni = dni;
 	}
 	
+	//TODO equals
+	
 	
 	public String toString() {
 		return String.format("Alumno con nombre %s y dni %s.", this.nombre, this.dni);
