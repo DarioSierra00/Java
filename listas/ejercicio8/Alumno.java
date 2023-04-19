@@ -1,5 +1,6 @@
 package com.edu.listas.ejercicio8;
 
+
 import java.util.Objects;
 
 public class Alumno implements Comparable<Alumno>{
@@ -10,12 +11,14 @@ public class Alumno implements Comparable<Alumno>{
 	private char sexo;
 	private String ciudad;
 	
+
 	public Alumno(String nombre, String dni, int edad, char sexo, String ciudad) {
 		super();
 		this.nombre = nombre;
 		this.dni = dni;
 		this.edad = edad;
 		this.sexo = sexo;
+
 		this.ciudad = ciudad;
 	}
 	
@@ -30,12 +33,6 @@ public class Alumno implements Comparable<Alumno>{
 		return this==obj || obj!=null &&
 				obj instanceof Alumno
 				&& this.hashCode()==((Alumno)obj).hashCode();
-	}
-
-
-
-	public String toString() {
-		return String.format("Alumno con nombre %s y dni %s.", this.nombre, this.dni);
 	}
 
 
@@ -66,8 +63,8 @@ public class Alumno implements Comparable<Alumno>{
 		return this.edad-o.edad;
 	}
 	
-	
+	public String toString() {
+		return String.format("Alumno con nombre %s y dni %s.", this.nombre, this.dni);
+	}
 
-	
-	
 }

@@ -1,4 +1,4 @@
-package com.edu.listas.ejercicio2Y3;
+package com.edu.listas.ejercicio8;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -7,8 +7,8 @@ import java.util.Set;
 
 public class EquipoGenerico<T> {
 	
-	protected String nombreDelEquipo;
-	protected List<T> elementos = new ArrayList<>();
+	String nombreDelEquipo;
+	List<T> elementos = new ArrayList<>();
 
 	
 	public EquipoGenerico(String nombreDelEquipo) {

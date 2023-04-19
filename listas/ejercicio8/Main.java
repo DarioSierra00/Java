@@ -6,6 +6,7 @@ public class Main {
 		Equipo e = new Equipo("Betis");
 		Equipo e1 = new Equipo("Mirandés");
 		
+
 		Alumno a = new Alumno("Luis", "1278876t", 18, 'H', "Sevilla");
 		Alumno a1 = new Alumno("Ana", "3774537b", 17, 'M', "Madrid");
 		Alumno a2 = new Alumno("Marcos", "127887336t", 19, 'H', "Madrid");
@@ -39,6 +40,8 @@ public class Main {
 			System.out.println(e1.mayorEdadEnEquipo());
 			System.out.println(e.ciudadesDireferentes());
 			
+		
+		
 		} catch (AlumnoException e2) {
 			e2.printStackTrace();
 		}

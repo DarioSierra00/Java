@@ -7,7 +7,7 @@ import java.util.Set;
 
 	public class Equipo {
 		private String nombreDelEquipo;
-		private List<Alumno> grupoAlumnos = new ArrayList<>();
+		protected List<Alumno> grupoAlumnos = new ArrayList<>();
 
 		
 		
