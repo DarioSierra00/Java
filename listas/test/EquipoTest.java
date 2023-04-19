@@ -8,7 +8,7 @@ import com.edu.listas.ejercicio2Y3.Alumno;
 import com.edu.listas.ejercicio2Y3.AlumnoException;
 import com.edu.listas.ejercicio2Y3.Equipo;
 
-class TestEquipo {
+class EquipoTest {
 	Equipo e = new Equipo("Betis");
 	Alumno a = new Alumno("Curritooooo", "1278876t");
 	
