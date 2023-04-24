@@ -1,4 +1,4 @@
-package com.edu.mockEuro.model;
+	package com.edu.mockEuro.model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -16,24 +16,20 @@ public class Historial {
 	}
 	
 	public boolean addSorteo(LocalDate fecha, Combinacion c) throws HistorialException {
-		boolean seAñade = false;
+		
 		if(this.sorteos.containsKey(fecha)) {
 			throw new HistorialException("Error, ya existe ese sorteo");
 		}
-		else {
-			this.sorteos.put(fecha, c);
-			seAñade = true;
-		}
-		return seAñade;
+		return sorteos.put(fecha, c) == null;
 	}
 	
 	public boolean addSorteo(int dia, int mes, int annio, Combinacion c) throws HistorialException {
-		LocalDate fechaSorteo = LocalDate.of(dia, mes, annio);
+		LocalDate fechaSorteo = LocalDate.of(annio, mes, dia);
 		return addSorteo(fechaSorteo, c);
 	}
 	
 	public boolean actualizarSorteo(int dia, int mes, int annio, Combinacion c) {
-		LocalDate fechaSorteo = LocalDate.of(dia, mes, annio);
+		LocalDate fechaSorteo = LocalDate.of(annio, mes, dia);
 		return this.sorteos.replace(fechaSorteo, this.sorteos.get(fechaSorteo), c);
 	}
 	
@@ -70,6 +66,15 @@ public class Historial {
 			historico.add(this.sorteos.get(ld).toString());
 		}
 		return historico;
+	}
+	
+	public Map<String, Integer> comprobarAciertos(LocalDate fecha, Combinacion c) throws HistorialException{
+		Map<String, Integer> aciertos = new HashMap<>();
+		if(!this.sorteos.keySet().contains(fecha) || fecha == null || c== null) {
+			throw new HistorialException("Este sorteo no existe");
+		}
+		aciertos.put(fecha.toString(), this.sorteos.get(fecha).comprobarCombinacion(c));
+		return aciertos;
 	}
 	}
 

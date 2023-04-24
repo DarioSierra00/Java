@@ -44,6 +44,8 @@ import java.util.Set;
 			return this;
 		}
 		
+		
+		
 		public Set<Alumno> interseccionEquipo(Equipo e) {	
 			Set<Alumno> interseccion = new HashSet<>(this.grupoAlumnos);
 			if(e!=null) {

@@ -1,5 +1,9 @@
 package com.edu.listas.ejercicio2Y3;
 
+import java.util.Objects;
+
+import com.edu.listas.ejercicio5.Mensaje;
+
 public class Alumno {
 	
 	private String nombre;
@@ -11,7 +15,19 @@ public class Alumno {
 		this.dni = dni;
 	}
 	
-	//TODO equals
+	@Override
+	public int hashCode() {
+		return Objects.hash(dni, nombre);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return this==obj || obj!=null &&
+				obj instanceof Alumno 
+				&& this.hashCode()==((Alumno)obj).hashCode();
+	}
+	
+	
 	
 	
 	public String toString() {
