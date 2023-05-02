@@ -1,5 +1,6 @@
 package com.edu.mockEuro;
 
+
 import java.time.LocalDate;
 
 import com.edu.mockEuro.model.Combinacion;
@@ -33,6 +34,8 @@ public class Main {
 		} catch (CombinacionException e1) {
 			e1.printStackTrace();
 		}
+
+
 	}
 
 }

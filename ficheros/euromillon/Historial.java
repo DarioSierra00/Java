@@ -1,4 +1,4 @@
-	package com.edu.mockEuro.model;
+	package com.edu.ficheros.euromillon;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

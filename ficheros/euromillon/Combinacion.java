@@ -1,5 +1,6 @@
-package com.edu.mockEuro.model;
+package com.edu.ficheros.euromillon;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -20,6 +21,10 @@ public class Combinacion {
 	
 	public Combinacion(int num1, int num2, int num3, int num4, int num5, int star1, int star2) throws CombinacionException {
 		this(toArray(num1,num2,num3,num4,num5), toArray(star1,star2));
+	}
+	
+	public Combinacion(String linea) {
+		this(toIntArray(linea, 1, 6) , toIntArray(linea, 7, 9));
 	}
 	
 	public Combinacion(int[] numeros, int[] estrellas) throws CombinacionException {
@@ -90,6 +95,16 @@ public class Combinacion {
 		return this==obj || obj!=null &&
 				obj instanceof Combinacion 
 				&& obj.hashCode()==this.hashCode();
+	}
+	
+	private int[] toIntArray(String[] datos, int inicio, int fin) {
+		String[] numeros = Arrays.copyOfRange(datos, inicio, fin);
+		int[] num = new int[datos.length];
+		
+		for(int i =0; i<num.length; i++) {
+			num[i] = Integer.valueOf(datos[i]);
+		}
+		return num;
 	}
 	
 	@Override

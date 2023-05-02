@@ -1,39 +1,38 @@
 package com.edu.listas.test;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import com.edu.listas.ejercicio5.Alumno;
 import com.edu.listas.ejercicio5.MensajeException;
 import com.edu.listas.ejercicio5.Persona;
 import com.edu.listas.ejercicio5.Profesor;
+
+class TestAlumnoEj5 {
+
 	
-class AlumnoEj5Test {
-	Persona p = new Alumno("Currito", 18);
-	Persona p1 = new Profesor("Luis", 33);
-	Persona p2 = new Alumno("Manuel", 17);
+	@ParameterizedTest
+	@CsvSource({"18,Hola"})
+	void testEnviarMensaje(String edad, String mens) {
+		Persona p = new Alumno("Sergio",Integer.valueOf(edad));
+		Persona p1 = new Alumno("Luis",Integer.valueOf(edad));
+		Persona p2 = new Profesor("Josemi",Integer.valueOf(edad));
 
-
-	@Test
-	void testEnviarMensaje() {
+		
 		try {
-			p.enviarMensaje(p1, "Hola profe");
+			p.enviarMensaje(p1, mens);
+			
 		} catch (MensajeException e) {
-			assert(true);
+			e.printStackTrace();
 		}
-		assertFalse(p2.enviarMensaje(p1, "no"));
 	}
 
 	@Test
 	void testLeerBuzon() {
-		try {
-			p1.leerBuzon();
-		} catch (MensajeException e) {
-			assert(false);
-		}
+		fail("Not yet implemented");
 	}
 
 	@Test
