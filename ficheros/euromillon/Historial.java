@@ -18,7 +18,6 @@ public class Historial {
 	private Map<LocalDate, Combinacion> sorteos;
 	private FileReader fileR;
 	private File file;
-	private Collection<Combinacion> combinaciones;
 	
 	public Historial() {
 		super();
@@ -47,7 +46,7 @@ public class Historial {
 	}
 	
 	public Set<Integer> numeroMenosRepetido() {
-		Map<Integer, Integer> numerosRepetidos = mapeando();
+		Map<Integer, Integer> numerosRepetidos = mapeandoNumeros();
 		Set<Integer> numeros = new HashSet<>();
 		numeros.add(1);
 		for(Integer n : numerosRepetidos.keySet()) {
@@ -61,20 +60,48 @@ public class Historial {
 	}
 	
 	public Set<Integer> numeroMasRepetido() {
-		Map<Integer, Integer> numerosRepetidos = mapeando();
+		Map<Integer, Integer> numerosRepetidos = mapeandoNumeros();
 		Set<Integer> numeros = new HashSet<>();
 		numeros.add(1);
 		for(Integer n : numerosRepetidos.keySet()) {
 			for(Integer i : numeros) {
-				if(numerosRepetidos.get(n) < numerosRepetidos.get(i)) {
+				if(numerosRepetidos.get(n) > numerosRepetidos.get(i)) {
 					numeros.clear();
-					numeros.add(i);
+					numeros.add(n);
 				}
 		}
 		}return numeros;
 	}
 	
-	private Map<Integer, Integer> mapeando() {
+	public Set<Integer> estrellaMenosRepetida() {
+		Map<Integer, Integer> estrellasRepetidas = mapeandoEstrellas();
+		Set<Integer> estrellas = new HashSet<>();
+		estrellas.add(1);
+		for(Integer n : estrellasRepetidas.keySet()) {
+			for(Integer i : estrellas) {
+				if(estrellasRepetidas.get(n) < estrellasRepetidas.get(i)) {
+					estrellas.clear();
+					estrellas.add(n);
+				}
+		}
+		}return estrellas;
+	}
+	
+	public Set<Integer> estrellaMasRepetida() {
+		Map<Integer, Integer> estrellasRepetidas = mapeandoEstrellas();
+		Set<Integer> estrellas = new HashSet<>();
+		estrellas.add(1);
+		for(Integer n : estrellasRepetidas.keySet()) {
+			for(Integer i : estrellas) {
+				if(estrellasRepetidas.get(n) > estrellasRepetidas.get(i)) {
+					estrellas.clear();
+					estrellas.add(n);
+				}
+		}
+		}return estrellas;
+	}
+	
+	private Map<Integer, Integer> mapeandoNumeros() {
 		Map<Integer, Integer> numRepe = new HashMap();
 		
 		for(LocalDate l : this.sorteos.keySet()) {
@@ -86,8 +113,52 @@ public class Historial {
 		}
 		}
 		return numRepe;
+	}
+	
+	private Map<Integer, Integer> mapeandoEstrellas() {
+		Map<Integer, Integer> numRepe = new HashMap();
 		
+		for(LocalDate l : this.sorteos.keySet()) {
+			for(Integer n : this.sorteos.get(l).getEstrellas()) {
+				if(!numRepe.containsKey(n)) {
+					numRepe.put(n, 0);
+				}
+				numRepe.put(n, numRepe.get(n)+1);
+		}
+		}
+		return numRepe;
+	}
+	
+	public int maxAciertosCombi(Combinacion combi) {
+		int acum = 0;
+		for(LocalDate l : this.sorteos.keySet()) {
+			if(this.sorteos.get(l).comprobarCombinacion(combi) > acum) {
+				acum = this.sorteos.get(l).comprobarCombinacion(combi);
+			}
+		}return acum;
+	}
+	
+	public Combinacion mayorSecuenciaNumeros() {
+		List<Combinacion> secuenciaSorteo = new ArrayList(this.sorteos.values());
+		Combinacion c = secuenciaSorteo.get(0);
 		
+		for(Combinacion c1 : this.sorteos.values()) {
+			if(obtenerSecuencia(c1) > obtenerSecuencia(c)) {
+				c = c1;
+			}
+		}return c;
+		
+	}
+	
+	public int obtenerSecuencia(Combinacion c) {
+		int secuencia = 0;
+		int temp = -1;
+		for(int n : c.getBolnumeros()) {
+			if(n == temp+1) {
+				secuencia++;
+			}
+			temp = n;
+		}return secuencia;
 	}
 	
 	public boolean actualizarSorteo(int dia, int mes, int annio, Combinacion c) {

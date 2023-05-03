@@ -96,6 +96,10 @@ public class Combinacion {
 				&& obj.hashCode()==this.hashCode();
 	}
 	
+	public Set<Integer> getBolnumeros() {
+		return Bolnumeros;
+	}
+
 	private static int[] toIntArray(String[] datos) {
 		int[] num = new int[datos.length];
 		
