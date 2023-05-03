@@ -12,25 +12,24 @@ public class Main {
 	public static void main(String[] args) {
 		
 		File fichero1 = new File("/home/estudiante/temporalJava/Euromillones.csv");
-		
+		Historial h = new Historial();
 		try {
-			FileReader reader = new FileReader(fichero1);
-			BufferedReader buffer = new BufferedReader(reader);;
-			
+			BufferedReader buffer = new BufferedReader(new FileReader(fichero1));;
 			String linea = buffer.readLine();
 			linea = buffer.readLine();
 			
 			while(linea != null) {
-				String[] li = linea.split(",");
-				System.out.println(LocalDate.parse(li[0], DateTimeFormatter.ofPattern("d/MM/yyyy")));
+				h.addSorteo(linea);
 				linea = buffer.readLine();
-				
+
 			}
-			
-			
-		} catch (IOException e) {
+		} catch (IOException | CombinacionException e) {
 			e.printStackTrace();
 		}
+		
+		System.out.println(h.mostrarHistorico());
+		System.out.println(h.numeroMenosRepetido());
+		System.out.println(h.numeroMasRepetido());
 		
 	}
 }	

@@ -23,8 +23,8 @@ public class Combinacion {
 		this(toArray(num1,num2,num3,num4,num5), toArray(star1,star2));
 	}
 	
-	public Combinacion(String linea) {
-		this(toIntArray(linea, 1, 6) , toIntArray(linea, 7, 9));
+	public Combinacion(String[] numeros, String[] estrellas) throws CombinacionException {
+		this(toIntArray(numeros) , toIntArray(estrellas));
 	}
 	
 	public Combinacion(int[] numeros, int[] estrellas) throws CombinacionException {
@@ -55,7 +55,6 @@ public class Combinacion {
 			throw new CombinacionException("Error, deben ser cinco numeros");
 		}
 	}
-
 
 
 	public Set<Integer> getNumeros() {
@@ -97,8 +96,7 @@ public class Combinacion {
 				&& obj.hashCode()==this.hashCode();
 	}
 	
-	private int[] toIntArray(String[] datos, int inicio, int fin) {
-		String[] numeros = Arrays.copyOfRange(datos, inicio, fin);
+	private static int[] toIntArray(String[] datos) {
 		int[] num = new int[datos.length];
 		
 		for(int i =0; i<num.length; i++) {
