@@ -20,7 +20,11 @@ public class GeneradorArchivo {
 	}
 	
 	public void addCountry() throws IOException {
-		File f = new File("C:\\Users\\HAWKS\\Desktop\\geo\\country.txt");
+		//File f = new File("C:\\Users\\HAWKS\\Desktop\\geo\\country.txt");
+		//File f = new File("C:\\Users\\HAWKS\\Desktop\\geo\\country.txt");
+		File f = new File("/home/estudiante/Downloads/country.txt");
+
+		
 		BufferedReader buffer = new BufferedReader(new FileReader(f));
 		String linea = buffer.readLine();
 		linea = buffer.readLine();
@@ -36,8 +40,9 @@ public class GeneradorArchivo {
 	
 	
 	public void geneadorArchivo() throws IOException {
-		File f = new File("C:\\Users\\HAWKS\\Desktop\\geo\\generado.txt");
-		
+		//File f = new File("C:\\Users\\HAWKS\\Desktop\\geo\\generado.txt");
+		File f = new File("/home/estudiante/Desktop/ficheroAlpelo.txt");
+		System.out.println(f.exists());
 		f.createNewFile();
 		
 		FileWriter writer = new FileWriter(f);

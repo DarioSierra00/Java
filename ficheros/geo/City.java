@@ -16,17 +16,20 @@ public class City {
 	
 	
 	
-	public City(String city_id, String city) {
+	public City(String city_id, String city) throws IOException {
 		super();
 		this.city_id = city_id;
 		this.city = city;
 		this.listAddress = new ArrayList<>();
+		addAdresses();
 	}
 
 
 
 	public void addAdresses() throws IOException {
-		File f = new File("C:\\Users\\HAWKS\\Desktop\\geo\\address.txt");
+		//File f = new File("C:\\Users\\HAWKS\\Desktop\\geo\\address.txt");
+		File f = new File("/home/estudiante/Downloads/address.txt");
+
 		BufferedReader buffer = new BufferedReader(new FileReader(f));
 		String linea = buffer.readLine();
 		linea = buffer.readLine();
@@ -54,4 +57,9 @@ public class City {
                 obj instanceof City
                 && this.hashCode()==((City)obj).hashCode();
     }
+	
+	@Override
+	public String toString() {
+		return String.format("	City id: %s, city: %s, address:%s ", this.city_id,this.city,this.listAddress.size());
+	}
 }
