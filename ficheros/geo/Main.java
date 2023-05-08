@@ -19,11 +19,12 @@ public class Main {
 		GeneradorArchivo ga = null;
 		try {
 			ga = new GeneradorArchivo();
+			ga.generadorArchivoo();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		System.out.println("hola");
-		//ga.geneadorArchivo();
+		
 
 	}
 }

@@ -16,9 +16,9 @@ public class City {
 	
 	
 	
-	public City(String city_id, String city) throws IOException {
+	public City(String id, String city) throws IOException {
 		super();
-		this.city_id = city_id;
+		this.city_id = id;
 		this.city = city;
 		this.listAddress = new ArrayList<>();
 		addAdresses();
@@ -27,23 +27,34 @@ public class City {
 
 
 	public void addAdresses() throws IOException {
-		//File f = new File("C:\\Users\\HAWKS\\Desktop\\geo\\address.txt");
-		File f = new File("/home/estudiante/Downloads/address.txt");
+		File f = new File("C:\\Users\\HAWKS\\Desktop\\geo\\address.txt");
+		//File f = new File("/home/estudiante/Downloads/address.txt");
 
 		BufferedReader buffer = new BufferedReader(new FileReader(f));
 		String linea = buffer.readLine();
 		linea = buffer.readLine();
-		String[] arrayAddresses = null;
+		String[] arrayAddresses;
 		
-		while(linea != null)
+		while(linea != null) {
 			arrayAddresses = linea.split(",");
 		
-		if(arrayAddresses[4].equals(city_id)) {
-			this.listAddress.add(new Address(arrayAddresses[0], arrayAddresses[1]));
-		}
-		
+			try {
+				if(arrayAddresses[4].equals(this.city_id)) {
+					this.listAddress.add(new Address(arrayAddresses[0], arrayAddresses[1]));
+				}
+			} catch (ArrayIndexOutOfBoundsException e) {
+			}
 		linea = buffer.readLine();
 
+	}buffer.close();
+	}
+	
+	public int getSizeAddress() {
+		return this.listAddress.size();
+	}
+	
+	public String getName() {
+		return this.city;
 	}
 	
 	@Override

@@ -23,26 +23,34 @@ public class Country {
 	}
 	
 	public void addCity() throws IOException {
-		//File f = new File("C:\\Users\\HAWKS\\Desktop\\geo\\city.txt");
-		File f = new File("/home/estudiante/Downloads/city.txt");
+		File f = new File("C:\\Users\\HAWKS\\Desktop\\geo\\city.txt");
+		//File f = new File("/home/estudiante/Downloads/city.txt");
 
 		BufferedReader buffer = new BufferedReader(new FileReader(f));
 		String linea = buffer.readLine();
 		linea = buffer.readLine();
-		String[] arrayCity = null;
+		String[] arrayCity;
 		
-		while(linea != null)
+		while(linea != null) {
 			arrayCity = linea.split(",");
 		
-		if(arrayCity[1].equals(country_id)) {
+		if(arrayCity[2].equals(this.country_id)) {
 			this.listCity.add(new City(arrayCity[0], arrayCity[1]));
 		}
 		
 		linea = buffer.readLine();
-		buffer.close();
 
 	}
+		buffer.close();
+	}
 	
+	public String ciudadesToString() {
+		StringBuilder sb = new StringBuilder();
+		for(City c : this.listCity) {
+			sb.append(c.toString()).append(System.lineSeparator());
+		}
+		return sb.toString();
+	}
 	@Override
 	public int hashCode() {
 		return Objects.hash(country, country_id);
@@ -59,6 +67,6 @@ public class Country {
 	public String toString() {
 		return String.format("Country id: %s, country: %s%n"
 							+ "		 Cities:%s%n"
-							+ "%n",this.country_id,this.country,this.listCity.size());
+							+ "%s",this.country_id,this.country,this.listCity.size(),ciudadesToString());
 	}
 }
