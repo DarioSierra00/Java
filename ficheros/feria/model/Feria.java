@@ -20,20 +20,22 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public class Feria {
 	
 	private List<Caseta> casetas;
 
-	public Feria(String path) {
+	public Feria(String path) throws IOException {
 		super();
 		this.casetas = cargarCaseta(path);
 		
 	}
 	
-	private List<Caseta> cargarCaseta(String path){
+	private List<Caseta> cargarCaseta(String path) throws IOException{
 		List<Caseta> cargandoCasetas = new ArrayList<>();
 		File fichero = new File(path);
+		fichero.createNewFile();
 		
 		try {
 			
@@ -152,7 +154,7 @@ public class Feria {
 	public void exportarJson() throws IOException {
 		File exportado = new File("./ficheros/casetasferia.json");
 		exportado.createNewFile();
-		Gson gson = new Gson();
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		String datos = gson.toJson(casetas);
 		FileWriter fw = new FileWriter(exportado);
 		BufferedWriter bw = new BufferedWriter(fw);

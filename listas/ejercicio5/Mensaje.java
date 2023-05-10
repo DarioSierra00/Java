@@ -1,47 +1,54 @@
 package com.edu.listas.ejercicio5;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
-public class Mensaje implements Comparable<Mensaje> {
-	
-	private Persona emisor;
-	private Persona destinatario;
+public class Mensaje implements Comparable<Mensaje>{
+
+	private static int secuencia = 0;
+	private Persona remitente;
 	private String texto;
-	private LocalDateTime fecha;
-	private String id;
-	private static int secuencia = 1;
+	private LocalDateTime fechaHora;
+	private int codigo; 
 	
-	
-	public Mensaje(Persona emisor, Persona destinatario, String texto, LocalDateTime fecha) {
+	public Mensaje(Persona remitente, String texto) {
 		super();
-		this.emisor = emisor;
-		this.destinatario = destinatario;
+		this.remitente = remitente;
 		this.texto = texto;
-		this.fecha = fecha;
-		this.id = ""+secuencia++;
+		this.fechaHora = LocalDateTime.now();
+		this.codigo = secuencia ++;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		boolean resultado = false;
+		if (this == obj)
+			resultado = true;
+		if (obj == null)
+			resultado = false;
+		if (getClass() != obj.getClass())
+			resultado = false;
+		Mensaje other = (Mensaje) obj;
+		return resultado && Objects.equals(fechaHora, other.fechaHora) && Objects.equals(remitente, other.remitente)
+				&& Objects.equals(texto, other.texto);
+	}
+
+	public boolean contieneFraseMensaje(String frase) {
+		return this.texto.contains(frase);
 	}
 	
-	public boolean contieneTexto(String textoABuscar) {
-		return textoABuscar!=null && !textoABuscar.isEmpty() && this.texto.contains(textoABuscar);
+	protected int getCodigo() {
+		return this.codigo;
 	}
-	
+
+	@Override
 	public String toString() {
-		return String.format("Mensaje %s: De: %s Texto: %s Fecha y hora:"
-				+ "%s", this.id, this.emisor, this.texto, 
-				this.fecha.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")) );
+		return String.format("Mensaje %s: De: %s Texto: %s Fecha y hora:" + 
+			" %s", this.codigo, this.remitente.getNombre(), this.texto, this.fechaHora);
 	}
-
-
-	public Persona getEmisor() {
-		return emisor;
-	}
-
 
 	@Override
 	public int compareTo(Mensaje o) {
-		return this.id.compareTo(o.id);
+		return this.remitente.nombre.compareTo(o.remitente.nombre);
 	}
-	
-
 }

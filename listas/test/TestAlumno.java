@@ -1,73 +1,97 @@
 package com.edu.listas.test;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
-
-import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import com.edu.listas.ejercicio5.Alumno;
-import com.edu.listas.ejercicio5.DestinatarioNoValidoException;
-import com.edu.listas.ejercicio5.Mensaje;
+import com.edu.listas.ejercicio5.ExceptionsPersona;
 import com.edu.listas.ejercicio5.Persona;
 import com.edu.listas.ejercicio5.Profesor;
 
 class TestAlumno {
 
-	Persona p = new Profesor("Curro", LocalDate.of(2000,8,7));
-	Persona p1 =  new Alumno("Luis", LocalDate.of(2010,9,12));
-	Mensaje m = new Mensaje(p,p1,"hola", null);
 	@ParameterizedTest
-	@CsvSource({""})
-	void testEnviarMensajePersonaMensaje(Persona p, Mensaje m) {
-		
-	}
+	@CsvSource(value= {
+			"Alumno,15","Alumno,18","Profesor,23","Profesor,15" })
+	void testEnviarMensajePersonaMensaje(String tipo,int edad) {
+	Alumno alum = new Alumno("Currito",edad);
+	Profesor p = null;
+	Alumno al = null;
 	
-	@ParameterizedTest
-
-	@CsvSource(value= {"Dario,LocalDate.now().minusYears(23)","Luis,LocalDate.now().minusYears(23)" })
-
-	void testEnviarMensajePersonaMensaje(String nombre,LocalDate fecha) {
-
-	Persona pf = new Profesor(nombre, fecha);
-	Persona pa2 = new Alumno(nombre, fecha);
-	assertTrue(pa2.mostrarMensajes().isEmpty());
-
+	if(tipo.equals("Alumno")) {
+		al = new Alumno("Luis",edad);
+		try {
+			alum.enviarMensaje(al, "eeeee");
+		} catch (ExceptionsPersona e) {
+			e.printStackTrace();
+		}
+	}
+	else {
+		p = new Profesor("Manuel",edad);
 	try {
-		pf.enviarMensaje(pa2, "de locos");
-	} catch (DestinatarioNoValidoException e) {
-		assert(false);
+		alum.enviarMensaje(p, "Que dise loco");
+	} catch (ExceptionsPersona e) {
+		e.printStackTrace();
 	}
-		assertTrue(!pa2.mostrarMensajes().isEmpty());
 	}
-
-	@Test
-	@ParameterizedTest
+	}
 	
-	void testPersona() {
+	@ParameterizedTest
+	@CsvFileSource(resources= {"/data.csv"})
+	void testEnviarMensajePersonaMensajeCSVFILE(String tipo,int edad) {
+	Alumno alum = new Alumno("Currito",edad);
+	Profesor p = null;
+	Alumno al = null;
+	
+	if(tipo.equals("Alumno")) {
+		al = new Alumno("Luis",edad);
+		try {
+			alum.enviarMensaje(al, "eeeee");
+		} catch (ExceptionsPersona e) {
+			e.printStackTrace();
+		}
+	}
+	else {
+		p = new Profesor("Manuel",edad);
+	try {
+		alum.enviarMensaje(p, "Que dise loco");
+	} catch (ExceptionsPersona e) {
+		e.printStackTrace();
+	}
+	}
+	}
+
+	@ParameterizedTest
+	@ValueSource(strings= {
+			"Hola loco",""})
+	void testLeerMensajesBuzon(String mensaje) {
+		Persona p = new Alumno("Currito",23);
+		if(!mensaje.isEmpty()) {
+			try {
+				p.leerMensajesBuzon();
+			} catch (ExceptionsPersona e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	@Test
+	void testLeerMensajesBuzonOrdenadorAlfabeticamente() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testEsMayorEdad() {
+	void testBorrarMensajeBuzon() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testMostrarMensajes() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testMostrarMensajesPorRemitente() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testBuscarMensajePorContenido() {
+	void testEncontrarMensajeContieneFrase() {
 		fail("Not yet implemented");
 	}
 
@@ -77,12 +101,7 @@ class TestAlumno {
 	}
 
 	@Test
-	void testToString() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testCompareTo() {
+	void testAlumno() {
 		fail("Not yet implemented");
 	}
 

@@ -9,7 +9,13 @@ public class Main {
 	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		Feria f = new Feria("./ficheros/casetasferia.xml");
+		Feria f = null;
+		try {
+			f = new Feria("ficheros/casetasferia.xml");
+		} catch (IOException e2) {
+			e2.printStackTrace();
+		}
+
 		String menu = "1. Mostrar todas las casetas existentes en una calle.\r\n"
                 + "2. Mostrar todas las casetas de tipo familiar.\r\n"
                 + "3. Mostrar todas las casetas de tipo Distrito\r\n"
