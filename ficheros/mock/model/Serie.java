@@ -1,5 +1,8 @@
 package com.edu.ficheros.mock.model;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Objects;
@@ -11,7 +14,11 @@ public class Serie implements Comparable<Serie>{
 	private Tema tema; // Tema de la serie
 	private ArrayList<Temporada> temporadas; // Lista de las temporadas de las series.
 	
+	/*
+	Se ha optado por una estructura de tipo lista porque por cada temporada, se va a guardar capitulos de forma ordenada, capitulo1,capitulo2,capitulo3
+	*/
 	
+
 	/**
 	 * Constructor que recibe el nombre de la serie, el año de creación y el tema.  Se crea la serie sin ninguna temporada
 	 * @param nombreSerie
@@ -48,7 +55,7 @@ public class Serie implements Comparable<Serie>{
 	 * @param nombreCapitulo
 	 * @throws SerieException
 	 */
-	public void annadirCapituloTemporada( String nombreTemporada, String nombreCapitulo) throws SerieException {
+	public void annadirCapituloTemporada(String nombreTemporada, String nombreCapitulo) throws SerieException {
 		Temporada temporada = new Temporada(nombreTemporada);
 		int pos = temporadas.indexOf(temporada);
 		if (pos == -1) {
@@ -97,7 +104,13 @@ public class Serie implements Comparable<Serie>{
 	 * @return
 	 */
 	public String listadoTemporadasPorNumeroDeCapitulos() {
-		return null;
+		StringBuilder sb = new StringBuilder();
+		Collections.sort(this.temporadas, new ComparatorPorNumeroDeCapitulos());
+		
+		for(Temporada t : this.temporadas) {
+			sb.append(t).append(System.lineSeparator());
+		}
+		return sb.toString();
 	}
 
 	
@@ -164,14 +177,27 @@ public class Serie implements Comparable<Serie>{
 	public int numeroTemporadas() {
 		return temporadas.size();
 	}
+	public void escribirEnTemporada() throws IOException {
+		File f = new File("./ficheros/Temporadas.csv");
 
+		f.createNewFile();
+		PrintWriter pw = new PrintWriter(f);
+		pw.write("nombreSerie,nombreTemporada,numeroCapitulos,sumaOpiniones,numeroOpiniones"+System.lineSeparator());
+
+		for(Temporada t : this.temporadas) {
+			pw.write(String.format("%s, %s, %s, %s, %s %s", this.nombreSerie, t.getNombreTemporada(), t.getCapitulos(),t.getSumaOpiniones(),t.getNumeroOpiniones(), System.lineSeparator()));
+		}
+		
+		pw.close();
+	}
 	
+	public ArrayList<Temporada> getTemporadas() {
+		return temporadas;
+	}
+
 	/**
 	 * toString
 	 */
-	public String toString() {
-		return  "Serie " + nombreSerie + " Anno " + anno + " Tema " + tema + "Numero temporadadas " + numeroTemporadas();
-	}
 
 	@Override
 	public int hashCode() {
@@ -190,7 +216,9 @@ public class Serie implements Comparable<Serie>{
 		return s.anno-this.anno;
 	}
 
-
+	public String toString() {
+		return  String.format("Serie con nombre %s del año %s y un numero de temporadas de %s", this.nombreSerie,this.anno,this.temporadas.size());
+	}
 	
 
 

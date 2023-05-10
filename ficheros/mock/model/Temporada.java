@@ -1,5 +1,8 @@
 package com.edu.ficheros.mock.model;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.LinkedList;
 import java.util.Objects;
 
@@ -28,14 +31,18 @@ public class Temporada implements Comparable<Temporada>{
 	
 	
 	public String primerCapituloQueContieneEstaPalabra(String palabra) throws SerieException {
-		StringBuilder sb = new StringBuilder();
-		for(String s : this.capitulos) {
-			if(!s.contains(palabra)) {
-				throw new SerieException("No se encuentra el capitulo");
+		String cap= "";
+		boolean encontrado = false;
+		for(int i = 0; i < this.capitulos.size() && !encontrado; i++) {
+			if(this.capitulos.get(i).indexOf(palabra)!=-1) {
+				cap = this.capitulos.get(i);     
+				encontrado = true;
 			}
-			sb.append(s);
 		}
-		return sb.toString();
+		if(!encontrado) {
+			throw new SerieException("Ese capitulo no existe");
+		}
+		return cap;
 	}
 	
 	/**
@@ -95,7 +102,7 @@ public class Temporada implements Comparable<Temporada>{
 	 */
 	
 
-	public int getCapitulos() {
+	public int getNumCapitulos() {
 		return this.capitulos.size();
 	}
 
@@ -110,10 +117,28 @@ public class Temporada implements Comparable<Temporada>{
 	
 	public double getNotaMedia() {
 		double notaMedia=-1;
-		if (numeroOpiniones==0) {
+		if (numeroOpiniones!=0) {
 			notaMedia= sumaOpiniones/numeroOpiniones;
 		}
 		return notaMedia;
+	}
+	public LinkedList<String> getCapitulos() {
+		return capitulos;
+	}
+
+	public String getNombreTemporada() {
+		return nombreTemporada;
+	}
+
+
+	public int getSumaOpiniones() {
+		
+		return sumaOpiniones;
+	}
+
+
+	public int getNumeroOpiniones() {
+		return numeroOpiniones;
 	}
 
 	@Override

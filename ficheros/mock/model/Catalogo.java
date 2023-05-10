@@ -1,7 +1,12 @@
 package com.edu.ficheros.mock.model;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 
 public class Catalogo {
@@ -114,10 +119,56 @@ public class Catalogo {
 	 * @return
 	 * @throws SerieException
 	 */
-	public  String listadoOrdenadoSeriesDeUnTema( Tema tema)  throws SerieException {
+	public String listadoOrdenadoSeriesDeUnTema(Tema tema)  throws SerieException {
 		StringBuilder sb = new StringBuilder();
-		Collections.sort(this.);
+		List<Serie> listaSeries = new ArrayList<>();
+		
+		for(Serie s : this.mapSeries.values()) {
+			listaSeries.add(s);
+		}
+		Collections.sort(listaSeries, new ComparatorPorAnnioSerie());;
+		for(Serie s : listaSeries) {
+			if(s.getTema().equals(tema)) {
+				sb.append(s).append(System.lineSeparator());
+			}
+		}
+		if(sb.isEmpty()) {
+			throw new SerieException("No hay ninguna serie de ese tema");
+		}
+		return sb.toString();
 	}
+	
+	public void escribirEnSerie() throws IOException {
+		File f = new File("./ficheros/Series.csv");
+
+		f.createNewFile();
+		PrintWriter pw = new PrintWriter(f);
+		pw.write("nombreSerie,anno,tema"+System.lineSeparator());
+
+		for(Serie s : this.mapSeries.values()) {
+			pw.write(String.format("%s, %s, %s %s", s.getNombreSerie(), s.getAnno(), s.getTema(), System.lineSeparator()));
+		}
+		
+		pw.close();
+	}
+	
+	public void escribirEnCapitulos() throws IOException {
+		File f = new File("./ficheros/Capitulos.csv");
+		f.createNewFile();
+		PrintWriter writer = new PrintWriter(f);
+
+		writer.write("nombreSerie,nombreTemporada,nombreCapitulo" + System.lineSeparator());
+		writer.write("--------------------" + System.lineSeparator());
+		for(Serie s : this.mapSeries.values()) {
+			for(Temporada t : s.getTemporadas()) {
+				for(String c : t.getCapitulos()) {
+					writer.write(String.format("%s,%s,%s %s",s.getNombreSerie(),t.getNombreTemporada(),c,System.lineSeparator()));
+				}
+			}
+		}
+		writer.close();
+	}
+	
 	
 	@Override
 	public int hashCode() {
@@ -131,6 +182,8 @@ public class Catalogo {
 	                obj instanceof Catalogo
 	                && this.hashCode()==((Catalogo)obj).hashCode();
 	}
+	
+	
 	
 }
 
