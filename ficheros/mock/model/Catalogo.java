@@ -1,6 +1,8 @@
 package com.edu.ficheros.mock.model;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -8,6 +10,19 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
+
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.TransformerFactoryConfigurationError;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 public class Catalogo {
 
@@ -126,7 +141,7 @@ public class Catalogo {
 		for(Serie s : this.mapSeries.values()) {
 			listaSeries.add(s);
 		}
-		Collections.sort(listaSeries, new ComparatorPorAnnioSerie());;
+		Collections.sort(listaSeries, new ComparatorPorAnnioSerie());
 		for(Serie s : listaSeries) {
 			if(s.getTema().equals(tema)) {
 				sb.append(s).append(System.lineSeparator());
@@ -167,6 +182,43 @@ public class Catalogo {
 			}
 		}
 		writer.close();
+	}
+	
+	public void escribirEnXml(String path) {
+		try {
+			Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
+			Element nodoRaiz = doc.createElement("Series");
+			doc.appendChild(nodoRaiz);
+			
+			for(Serie s : this.mapSeries.values()) {
+				Element primerNodoHijo = doc.createElement("Serie");
+				nodoRaiz.appendChild(primerNodoHijo);
+				
+				Element nombreSerie = doc.createElement("Nombre");
+				nombreSerie.appendChild(doc.createTextNode(s.getNombreSerie()));
+				primerNodoHijo.appendChild(nombreSerie);
+				
+				Element temporada = doc.createElement("Temporadas");
+				primerNodoHijo.appendChild(temporada);
+				
+				for(Temporada t : s.getTemporadas()) {
+					Element nombreTemporada = doc.createElement("nombreTemporada");
+					temporada.appendChild(nombreTemporada);
+					
+					Element capitulos = doc.createElement("capitulos");
+					temporada.appendChild(capitulos);
+					
+				}
+			}
+			Transformer optimus = TransformerFactory.newInstance().newTransformer();
+			DOMSource source = new DOMSource();
+			StreamResult result = new StreamResult(new File(path));
+			
+			optimus.setOutputProperty(OutputKeys.INDENT, "yes");
+			optimus.transform(source, result);
+		} catch (ParserConfigurationException | TransformerException | TransformerFactoryConfigurationError e) {
+			e.printStackTrace();
+		}
 	}
 	
 	
